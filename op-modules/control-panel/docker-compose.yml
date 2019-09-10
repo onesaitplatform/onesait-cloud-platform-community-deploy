@@ -1,0 +1,20 @@
+version: "2.1"
+
+services:         
+  controlpanelservice:
+    image: ${REPOSITORY}/onesaitplatform/controlpanel:${MODULE_TAG}
+    container_name: controlpanelservice 
+    environment:
+      - REALTIMEDBUSEAUTH=false 
+      - ONESAIT_PROPERTIES={"onesaitplatform":{"secure.cookie":false}}
+    networks:
+      - op-data_datanetwork
+    ports:
+     - "18000:18000"
+    external_links:
+     - configdb
+     - schedulerdb
+     - realtimedb 
+networks:
+  op-data_datanetwork:
+    external: true

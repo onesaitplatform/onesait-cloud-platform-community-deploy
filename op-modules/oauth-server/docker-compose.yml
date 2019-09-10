@@ -1,0 +1,17 @@
+version: "2.1"
+
+services:
+  oauthservice:
+    image: ${REPOSITORY}/onesaitplatform/oauthserver:${MODULE_TAG}
+    container_name: oauthservice  
+    ports:
+      - "21000:21000"
+    environment:
+      - REALTIMEDBUSEAUTH=false      
+    networks:
+      - op-data_datanetwork
+    external_links:
+      - configdb
+networks:
+  op-data_datanetwork:
+    external: true

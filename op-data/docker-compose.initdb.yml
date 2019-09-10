@@ -1,0 +1,18 @@
+version: "2.1"
+
+services:
+  configinitinstance:
+    image: ${REPOSITORY}/onesaitplatform/configinit:${MODULE_TAG}
+    container_name: configinitservice    
+    environment:
+      - REALTIMEDBUSEAUTH=false  
+      - LOADELASTICDB=false  
+    networks:
+      - op-data_datanetwork
+    external_links:
+      - configdb
+      - schedulerdb
+      - realtimedb 
+networks:
+  op-data_datanetwork:
+    external: true
