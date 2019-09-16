@@ -15,7 +15,7 @@ services:
      - cacheservice
      - realtimedb
     networks:
-    - op-data_datanetwork
+    - op_data_datanetwork
 networks:
-  op-data_datanetwork:
+  op_data_datanetwork:
     external: true

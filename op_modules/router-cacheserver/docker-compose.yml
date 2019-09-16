@@ -6,18 +6,18 @@ services:
     environment:
       - REALTIMEDBUSEAUTH=false    
     networks:
-      - op-data_datanetwork
+      - op_data_datanetwork
     image: ${REPOSITORY}/onesaitplatform/cacheservice:${MODULE_TAG}
     external_links:
       - controlpanelservice
   routerservice:
     container_name: router
     networks:
-      - op-data_datanetwork
+      - op_data_datanetwork
     image: ${REPOSITORY}/onesaitplatform/router:${MODULE_TAG}
     environment:
       - SERVER_NAME="localhost"
       - REALTIMEDBUSEAUTH=false
 networks:
-  op-data_datanetwork:
+  op_data_datanetwork:
     external: true

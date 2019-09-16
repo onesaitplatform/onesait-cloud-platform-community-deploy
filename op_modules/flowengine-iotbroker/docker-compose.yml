@@ -10,7 +10,7 @@ services:
       - REALTIMEDBUSEAUTH=false
     stdin_open: true
     networks:
-      - op-data_datanetwork
+      - op_data_datanetwork
     external_links:
       - configdb
       - schedulerdb
@@ -29,7 +29,7 @@ services:
       - routerservice
       - realtimedb
     networks:
-      - op-data_datanetwork
+      - op_data_datanetwork
 networks:
-  op-data_datanetwork:
+  op_data_datanetwork:
     external: true

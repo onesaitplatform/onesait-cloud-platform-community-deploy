@@ -8,11 +8,11 @@ services:
       - REALTIMEDBUSEAUTH=false  
       - LOADELASTICDB=false  
     networks:
-      - op-data_datanetwork
+      - op_data_datanetwork
     external_links:
       - configdb
       - schedulerdb
       - realtimedb 
 networks:
-  op-data_datanetwork:
+  op_data_datanetwork:
     external: true

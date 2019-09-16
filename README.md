@@ -8,7 +8,7 @@
 
 ## Docker Compose files to deploy Onesait Cloud Platform (community version) using containers
 
-- op-data: persistence layer of the platform
+- op_data: persistence layer of the platform
 - op-modules: every platform module
 
 ## More information

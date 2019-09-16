@@ -8,7 +8,7 @@ services:
       - REALTIMEDBUSEAUTH=false 
       - ONESAIT_PROPERTIES={"onesaitplatform":{"secure.cookie":false}}
     networks:
-      - op-data_datanetwork
+      - op_data_datanetwork
     ports:
      - "18000:18000"
     external_links:
@@ -16,5 +16,5 @@ services:
      - schedulerdb
      - realtimedb 
 networks:
-  op-data_datanetwork:
+  op_data_datanetwork:
     external: true

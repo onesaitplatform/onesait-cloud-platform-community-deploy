@@ -5,12 +5,12 @@ services:
     image: nginx:latest
     container_name: proxy
     networks:
-      - op-data_datanetwork    
+      - op_data_datanetwork    
     ports:
       - "90:90"
     volumes:  
       - ${NGINX_VOLUME}:/etc/nginx/nginx.conf:rw
     restart: on-failure
 networks:
-  op-data_datanetwork:
+  op_data_datanetwork:
     external: true
