@@ -11,5 +11,19 @@
 - op_data: persistence layer of the platform
 - op-modules: every platform module
 
+## Pre requisites:
+
+- Git installed
+- Docker installed
+- Docker Compose installed
+
+If you deploy using CentOS, you can use this script:
+
+centos7-base-software.sh
+
+- Give it permissions: chmod ugo+x centos7-base-software.sh
+
+- Execute it with sudo
+
 ## More information
 For more info and details visit platform Confluence https://onesaitplatform.atlassian.net/wiki/spaces/OP/pages/43712636/%28Deployment%29+How+to+deploy+onesait+Cloud+Platform+locally+with+Docker+and+docker-compose?atlOrigin=eyJpIjoiMDAxMmMyNWI5YmZlNDkxYmJjZGMyMDRhYWE2YTdiZTEiLCJwIjoiYyJ9
