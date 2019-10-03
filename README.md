@@ -11,7 +11,7 @@
 - op_data: persistence layer of the platform
 - op-modules: every platform module
 
-## Pre requisites:
+## Pre requirements:
 
 - Git installed
 - Docker installed
@@ -20,6 +20,10 @@
 If you deploy using CentOS, you can use this script:
 
 centos7-base-software.sh
+
+Or if you are Ubuntu user you can use this script:
+
+ubuntu18-base-software.sh
 
 - Give it permissions: chmod ugo+x centos7-base-software.sh
 
