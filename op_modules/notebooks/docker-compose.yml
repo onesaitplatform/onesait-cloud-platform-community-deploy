@@ -5,7 +5,7 @@ services:
     networks:
       - op_data_datanetwork
     container_name: zeppelin
-    image: ${REPOSITORY}/onesaitplatform/zeppelin:${MODULE_TAG}
+    image: ${REPOSITORY}/onesaitplatform/notebook:${MODULE_TAG}
 networks:
   op_data_datanetwork:
     external: true
