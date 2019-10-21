@@ -20,7 +20,7 @@ services:
     container_name: flowengine
     image: ${REPOSITORY}/onesaitplatform/flowengine:${MODULE_TAG}
     environment:
-      - SERVERNAME="localhost"
+      - SERVERNAME="localhost:90"
       - REALTIMEDBUSEAUTH=false
     external_links:
       - quasar

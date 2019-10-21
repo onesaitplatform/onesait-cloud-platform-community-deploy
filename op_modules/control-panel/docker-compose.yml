@@ -6,7 +6,8 @@ services:
     container_name: controlpanelservice 
     environment:
       - REALTIMEDBUSEAUTH=false 
-      - ONESAIT_PROPERTIES={"onesaitplatform":{"secure.cookie":false}}
+      # If you deploy in a server over https ssl comment the following line (always uncomment by default). Change proxyurl port if using a different one (see nging.conf - server - listen)
+      - ONESAIT_PROPERTIES={"onesaitplatform":{"secure.cookie":false,"flowengine":{"services":{"proxyurl":"http://localhost:90/nodered/"}}}}
     networks:
       - op_data_datanetwork
     ports:

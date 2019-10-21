@@ -74,6 +74,54 @@ http {
 
 			}
 
+			location /dashboardengine/loginRest {
+				proxy_pass http://dashboardengineservice:18300;
+			}
+			location /dashboardengine/dsengine/solver {
+				proxy_pass http://dashboardengineservice:18300;
+
+				proxy_set_header X-Real-IP $remote_addr;
+				proxy_set_header Host $host;
+				proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+				proxy_http_version 1.1;
+				proxy_set_header Upgrade websocket;
+				proxy_set_header Connection upgrade;
+				proxy_read_timeout 86400;
+			}
+
+			location /dashboardengine {
+				proxy_pass http://dashboardengineservice:18300/dashboardengine;
+				proxy_read_timeout 360s;
+
+				# WebSocket support
+				proxy_http_version 1.1;
+				proxy_set_header Upgrade $http_upgrade;
+				proxy_set_header Connection "upgrade";
+				proxy_set_header X-Forwarded-For $remote_addr;
+			}
+
+			location /devicesimulator {
+				proxy_pass http://devicesimulator:20000/devicesimulator;
+				proxy_read_timeout 360s;
+
+				# WebSocket support
+				proxy_http_version 1.1;
+				proxy_set_header Upgrade $http_upgrade;
+				proxy_set_header Connection "upgrade";
+				proxy_set_header X-Forwarded-For $remote_addr;
+			}
+
+			location /router {
+				proxy_pass http://routerservice:20000/router;
+				proxy_read_timeout 360s;
+
+				# WebSocket support
+				proxy_http_version 1.1;
+				proxy_set_header Upgrade $http_upgrade;
+				proxy_set_header Connection "upgrade";
+				proxy_set_header X-Forwarded-For $remote_addr;
+			}
+
 		 	location /iot-broker {
 				proxy_pass http://iotbrokerservice:19000/iot-broker;
 				proxy_read_timeout 360s;
@@ -118,6 +166,17 @@ http {
             	proxy_set_header X-Forwarded-For $remote_addr;
         	} 
 
+			location /oauth-server {
+                proxy_pass  http://oauthservice:21000/oauth-server;
+                proxy_read_timeout 360s;
+
+                # WebSocket support
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+                proxy_set_header X-Forwarded-For $remote_addr;
+            }	
+
 			location /notebooks/ {
 				proxy_pass http://zeppelin:8080/;
 				
@@ -148,16 +207,11 @@ http {
             	proxy_read_timeout 86400;			
 			} 	      
 			
-            location /oauth-server {
-                proxy_pass  http://oauthservice:21000/oauth-server;
-                proxy_read_timeout 360s;
-
-                # WebSocket support
-                proxy_http_version 1.1;
-                proxy_set_header Upgrade $http_upgrade;
-                proxy_set_header Connection "upgrade";
-                proxy_set_header X-Forwarded-For $remote_addr;
-            }							    	        	        	        	        	
+			location /rules-engine { 
+				proxy_pass http://rules-engine-service:20200/rules-engine; 
+				proxy_set_header Host $host; 
+			}
+            						    	        	        	        	        	
         	
         	location /web {
                 alias /usr/local/webprojects;

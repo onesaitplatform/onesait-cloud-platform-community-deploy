@@ -2,16 +2,17 @@ version: "2.1"
 
 services:
   digitaltwinbrokerservice:
-    image: ${REPOSITORY}/onesaitplatform/digitaltwin:${MODULE_TAG}
-    container_name: digitaltwinbrokerservice   
+    image: ${REPOSITORY}/onesaitplatform/rules-engine:${MODULE_TAG}
+    container_name: rules-engine-service   
     environment:
       - REALTIMEDBUSEAUTH=false          
     networks:
       - op_data_datanetwork
     ports:
-     - "19300:19300"
+     - "20200:20200"
     external_links:
      - configdb
+     - realtimedb 
 networks:
   op_data_datanetwork:
     external: true

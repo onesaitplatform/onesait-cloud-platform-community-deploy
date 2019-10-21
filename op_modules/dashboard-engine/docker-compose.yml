@@ -1,0 +1,18 @@
+version: "2.1"
+
+services:
+  dashboardengineservice:
+    image: ${REPOSITORY}/onesaitplatform/dashboard:${MODULE_TAG}
+    container_name: dashboardengineservice   
+    environment:
+      - REALTIMEDBUSEAUTH=false
+      - ONESAIT_PROPERTIES={"onesaitplatform":{"database":{"mongodb":{"socket-timeout":10000}}}}          
+    networks:
+      - op_data_datanetwork
+    external_links:
+     - configdb
+     - realtimedb 
+     - quasar
+networks:
+  op_data_datanetwork:
+    external: true
