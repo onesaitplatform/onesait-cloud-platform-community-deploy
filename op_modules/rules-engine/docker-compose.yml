@@ -1,7 +1,7 @@
 version: "2.1"
 
 services:
-  digitaltwinbrokerservice:
+  rules-engine-service:
     image: ${REPOSITORY}/onesaitplatform/rules-engine:${MODULE_TAG}
     container_name: rules-engine-service   
     environment:
