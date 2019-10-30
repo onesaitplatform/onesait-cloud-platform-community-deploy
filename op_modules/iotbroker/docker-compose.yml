@@ -16,20 +16,6 @@ services:
       - schedulerdb
       - routerservice
       - realtimedb
-  flowengineservice:
-    container_name: flowengine
-    image: ${REPOSITORY}/onesaitplatform/flowengine:${MODULE_TAG}
-    environment:
-      - SERVERNAME="localhost:90"
-      - REALTIMEDBUSEAUTH=false
-    external_links:
-      - quasar
-      - configdb
-      - schedulerdb
-      - routerservice
-      - realtimedb
-    networks:
-      - op_data_datanetwork
 networks:
   op_data_datanetwork:
     external: true
