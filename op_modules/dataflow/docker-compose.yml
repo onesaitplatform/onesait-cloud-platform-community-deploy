@@ -1,0 +1,26 @@
+version: "2.1"
+
+services:
+  streamsets:
+    container_name: streamsets
+    image: ${REPOSITORY}/onesaitplatform/streamsets:${MODULE_TAG}
+    environment:
+      - SERVERNAME=${SERVERNAME}
+      - PROTOCOL=${PROTOCOL}
+      - REALTIMEDBUSEAUTH=false
+      - OP_STREAMSETS_XMX=1024m
+      - OP_STREAMSETS_XMS=1024m
+      - OP_STREAMSETS_POOL_SIZE=50
+      - OP_STREAMSETS_SAMPLING_SAMPLE_SIZE=1
+      - OP_STREAMSETS_SAMPLING_POPULATION_SIZE=50
+    external_links:
+      - quasar
+      - configdb
+      - schedulerdb
+      - routerservice
+      - realtimedb
+    networks:
+      - op_data_datanetwork
+networks:
+  op_data_datanetwork:
+    external: true
