@@ -7,6 +7,7 @@ services:
     environment:
       - REALTIMEDBUSEAUTH=false 
       # If you deploy in a server over https ssl comment the following line (always uncomment by default). Change proxyurl port if using a different one (see nging.conf - server - listen)
+      #- ONESAIT_PROPERTIES={"onesaitplatform":{"secure.cookie":false,"flowengine":{"services":{"proxyurl":"${PROTOCOL}://${SERVERNAME}/nodered/"}},"notebook":{"url":"${PROTOCOL}://${SERVERNAME}/controlpanel/notebooks/app/"}}}
       - ONESAIT_PROPERTIES={"onesaitplatform":{"secure.cookie":false,"flowengine":{"services":{"proxyurl":"${PROTOCOL}://${SERVERNAME}/nodered/"}},"notebook":{"url":"${PROTOCOL}://${SERVERNAME}/controlpanel/notebooks/app/"}}}
     networks:
       - op_data_datanetwork

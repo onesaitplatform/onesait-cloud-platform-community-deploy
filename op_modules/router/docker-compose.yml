@@ -1,15 +1,6 @@
 version: "2.1"
 
 services:
-  cacheservice:
-    container_name: cacheserver
-    environment:
-      - REALTIMEDBUSEAUTH=false    
-    networks:
-      - op_data_datanetwork
-    image: ${REPOSITORY}/onesaitplatform/cacheservice:${MODULE_TAG}
-    external_links:
-      - controlpanelservice
   routerservice:
     container_name: router
     networks:
