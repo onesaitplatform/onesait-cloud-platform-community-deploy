@@ -5,8 +5,8 @@ services:
     image: ${REPOSITORY}/onesaitplatform/iotbroker:${MODULE_TAG}
     container_name: iotbroker
     environment:
-      - KAFKAENABLED="false"
-      - SERVER_NAME="localhost"
+      - KAFKAENABLED=false
+      - SERVER_NAME=localhost
       - REALTIMEDBUSEAUTH=false
     stdin_open: true
     networks:
