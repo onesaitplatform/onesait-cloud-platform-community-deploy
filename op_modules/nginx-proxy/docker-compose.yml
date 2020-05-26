@@ -13,6 +13,7 @@ services:
       - ${NGINX_VOLUME_CONF}nginx.conf:/etc/nginx/nginx.conf:rw
       - ${NGINX_VOLUME_CONF}:/usr/local/conf.d:rw
       - ${NGINX_VOLUME_TLS}:/usr/local/tls:rw
+      - ${NGINX_VOLUME_WEB_PROJECTS}:/usr/local/webprojects:rw
     restart: on-failure
 networks:
   op_data_datanetwork:

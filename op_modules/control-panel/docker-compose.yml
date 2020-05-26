@@ -17,6 +17,8 @@ services:
      - configdb
      - schedulerdb
      - realtimedb 
+    volumes:
+     - ${CP_VOLUME_WEB_PROJECTS}:/usr/local/webprojects:rw
 networks:
   op_data_datanetwork:
     external: true
