@@ -7,8 +7,11 @@ services:
       - op_data_datanetwork
     image: ${REPOSITORY}/onesaitplatform/router:${MODULE_TAG}
     environment:
-      - SERVER_NAME="localhost"
+      - SERVER_NAME=localhost
       - REALTIMEDBUSEAUTH=false
+      - NOTIFICATION_POOL_SUBSCRIPTION=50
+      - NOTIFICATION_POOL_SUBSCRIPTION_NOTIFICATOR=50
+      - NOTIFICATION_SUBSCRIPTION_ATTEMPS=5
 networks:
   op_data_datanetwork:
     external: true

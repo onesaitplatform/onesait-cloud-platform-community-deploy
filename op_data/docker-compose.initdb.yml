@@ -7,11 +7,11 @@ services:
     environment:
       - REALTIMEDBUSEAUTH=false  
       - LOADELASTICDB=false  
+      - LOADMONGODB=true
     networks:
       - op_data_datanetwork
     external_links:
       - configdb
-      - schedulerdb
       - realtimedb 
 networks:
   op_data_datanetwork:

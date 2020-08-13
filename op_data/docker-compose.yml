@@ -14,14 +14,7 @@ services:
     networks:
       - datanetwork
     ports:
-      - "3306:3306"
-  schedulerdb:
-    image: ${REPOSITORY}/onesaitplatform/schedulerdb:${PERSISTENCE_TAG}
-    container_name: schedulerdb
-    networks:
-      - datanetwork
-    ports:
-      - "3307:3306"         
+      - "3306:3306"     
   quasar:
     image: ${REPOSITORY}/onesaitplatform/quasar:${QUASAR_TAG}
     container_name: quasar

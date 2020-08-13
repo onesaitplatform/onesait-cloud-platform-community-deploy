@@ -16,7 +16,6 @@ services:
     external_links:
       - quasar
       - configdb
-      - schedulerdb
       - routerservice
       - realtimedb
     networks:

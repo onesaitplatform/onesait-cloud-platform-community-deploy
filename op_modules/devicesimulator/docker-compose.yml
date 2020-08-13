@@ -1,0 +1,18 @@
+version: "2.1"
+
+services:
+  devicesimulator:
+    container_name: devicesimulator
+    image: ${REPOSITORY}/onesaitplatform/devicesimulator:${MODULE_TAG}
+    environment:
+     - SERVER_NAME=localhost
+     - REALTIMEDBUSEAUTH=false
+    stdin_open: true
+    external_links:
+     - routerservice
+     - realtimedb
+    networks:
+    - op_data_datanetwork
+networks:
+  op_data_datanetwork:
+    external: true

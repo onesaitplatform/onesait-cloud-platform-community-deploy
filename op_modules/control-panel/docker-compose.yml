@@ -10,12 +10,13 @@ services:
       #- ONESAIT_PROPERTIES={"onesaitplatform":{"secure.cookie":false,"flowengine":{"services":{"proxyurl":"${PROTOCOL}://${SERVERNAME}/nodered/"}},"notebook":{"url":"${PROTOCOL}://${SERVERNAME}/controlpanel/notebooks/app/"}}}
       - ONESAIT_PROPERTIES={"onesaitplatform":{"secure.cookie":false,"flowengine":{"services":{"proxyurl":"${PROTOCOL}://${SERVERNAME}/nodered/"}},"notebook":{"url":"${PROTOCOL}://${SERVERNAME}/controlpanel/notebooks/app/"}}}
     networks:
-      - op_data_datanetwork
+     - op_data_datanetwork
     ports:
      - "18000:18000"
+    volumes:
+     - ${CP_VOLUME_WEB_PROJECTS}:/usr/local/webprojects:rw
     external_links:
      - configdb
-     - schedulerdb
      - realtimedb 
 networks:
   op_data_datanetwork:
