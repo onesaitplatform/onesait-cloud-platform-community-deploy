@@ -5,9 +5,10 @@ services:
     image: ${REPOSITORY}/onesaitplatform/configinit:${MODULE_TAG}
     container_name: configinitservice    
     environment:
-      - REALTIMEDBUSEAUTH=false  
-      - LOADELASTICDB=false  
-      - LOADMONGODB=true
+      - REALTIMEDBUSEAUTH=false
+      - LOADELASTICDB=false
+      - LOADMONGODB=false
+      - UPDATE_MODE_MULTITENANT=false
     networks:
       - op_data_datanetwork
     external_links:
