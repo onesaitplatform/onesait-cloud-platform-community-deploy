@@ -6,6 +6,7 @@ services:
     container_name: dashboardengineservice   
     environment:
       - REALTIMEDBUSEAUTH=false
+      - SERVER_NAME=localhost
       - ONESAIT_PROPERTIES={"onesaitplatform":{"database":{"mongodb":{"socket-timeout":10000}}}}          
     networks:
       - op_data_datanetwork

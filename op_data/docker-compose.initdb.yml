@@ -6,6 +6,7 @@ services:
     container_name: configinitservice    
     environment:
       - REALTIMEDBUSEAUTH=false
+      - SERVER_NAME=localhost
       - LOADELASTICDB=false
       - LOADMONGODB=false
       - UPDATE_MODE_MULTITENANT=false

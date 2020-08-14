@@ -6,6 +6,7 @@ services:
     container_name: rules-engine-service   
     environment:
       - REALTIMEDBUSEAUTH=false          
+      - SERVER_NAME=localhost
     networks:
       - op_data_datanetwork
     ports:
