@@ -10,7 +10,6 @@ services:
     stdin_open: true
     external_links:
      - configdb
-     - schedulerdb
      - routerservice
      - cacheservice
      - realtimedb

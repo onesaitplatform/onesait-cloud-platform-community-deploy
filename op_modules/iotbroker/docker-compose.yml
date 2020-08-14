@@ -13,7 +13,6 @@ services:
       - op_data_datanetwork
     external_links:
       - configdb
-      - schedulerdb
       - routerservice
       - realtimedb
 networks:

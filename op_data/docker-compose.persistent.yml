@@ -18,16 +18,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ${CONFIGDB_VOLUME}:/var/lib/mysql      
-  schedulerdb:
-    image: ${REPOSITORY}/onesaitplatform/schedulerdb:${PERSISTENCE_TAG}
-    container_name: schedulerdb
-    networks:
-      - datanetwork
-    ports:
-      - "3307:3306"
-    volumes:
-      - ${SCHEDULERDB_VOLUME}:/var/lib/mysql                         
+      - ${CONFIGDB_VOLUME}:/var/lib/mysql                 
   quasar:
     image: ${REPOSITORY}/onesaitplatform/quasar:${QUASAR_TAG}
     container_name: quasar

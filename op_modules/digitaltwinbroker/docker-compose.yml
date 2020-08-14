@@ -1,0 +1,15 @@
+version: "2.1"
+
+services:
+  digitaltwinbrokerservice:
+    container_name: digitaltwinbrokerservice
+    image: ${REPOSITORY}/onesaitplatform/digitaltwin:${MODULE_TAG}
+    environment:
+     - SERVER_NAME=localhost
+     - REALTIMEDBUSEAUTH=false
+    stdin_open: true
+    networks:
+    - op_data_datanetwork
+networks:
+  op_data_datanetwork:
+    external: true
