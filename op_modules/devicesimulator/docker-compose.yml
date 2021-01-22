@@ -5,7 +5,7 @@ services:
     container_name: devicesimulator
     image: ${REPOSITORY}/onesaitplatform/devicesimulator:${MODULE_TAG}
     environment:
-     - SERVER_NAME=localhost
+     - SERVER_NAME=${SERVER_NAME}
      - REALTIMEDBUSEAUTH=false
     stdin_open: true
     external_links:
