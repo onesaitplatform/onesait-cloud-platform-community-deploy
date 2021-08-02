@@ -6,7 +6,7 @@ services:
     container_name: iotbroker
     environment:
       - KAFKAENABLED=false
-      - SERVER_NAME=localhost
+      - SERVER_NAME=${SERVER_NAME}
       - REALTIMEDBUSEAUTH=false
     stdin_open: true
     networks:

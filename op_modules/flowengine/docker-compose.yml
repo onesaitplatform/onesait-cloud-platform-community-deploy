@@ -5,7 +5,7 @@ services:
     container_name: flowengine
     image: ${REPOSITORY}/onesaitplatform/flowengine:${MODULE_TAG}
     environment:
-      - SERVERNAME=${SERVERNAME}
+      - SERVER_NAME=${SERVER_NAME}
       - PROTOCOL=${PROTOCOL}
       - REALTIMEDBUSEAUTH=false
     external_links:

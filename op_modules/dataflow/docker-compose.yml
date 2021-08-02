@@ -5,7 +5,7 @@ services:
     container_name: streamsets
     image: ${REPOSITORY}/onesaitplatform/streamsets:${MODULE_TAG}
     environment:
-      - SERVERNAME=${SERVERNAME}
+      - SERVERNAME=${SERVER_NAME}
       - PROTOCOL=${PROTOCOL}
       - REALTIMEDBUSEAUTH=false
       - OP_STREAMSETS_XMX=1024m

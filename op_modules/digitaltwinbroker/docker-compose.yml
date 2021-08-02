@@ -5,7 +5,7 @@ services:
     container_name: digitaltwinbrokerservice
     image: ${REPOSITORY}/onesaitplatform/digitaltwin:${MODULE_TAG}
     environment:
-     - SERVER_NAME=localhost
+     - SERVER_NAME=${SERVER_NAME}
      - REALTIMEDBUSEAUTH=false
     stdin_open: true
     networks:

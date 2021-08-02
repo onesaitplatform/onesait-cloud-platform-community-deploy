@@ -8,7 +8,7 @@ services:
       - "21000:21000"
     environment:
       - REALTIMEDBUSEAUTH=false 
-      - SERVER_NAME=localhost      
+      - SERVER_NAME=${SERVER_NAME}      
     networks:
       - op_data_datanetwork
     external_links:
