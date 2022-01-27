@@ -18,19 +18,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ${CONFIGDB_VOLUME}:/var/lib/mysql                 
-  quasar:
-    image: ${REPOSITORY}/onesaitplatform/quasar:${QUASAR_TAG}
-    container_name: quasar
-    networks:
-     - datanetwork
-    ports:
-     - "18200:10800"
-    environment:
-     - REALTIMEDB=realtimedb 
-    depends_on:
-     - "realtimedb"
-    restart: on-failure       
+      - ${CONFIGDB_VOLUME}:/var/lib/mysql                     
 networks:
   datanetwork:
     ipam:
