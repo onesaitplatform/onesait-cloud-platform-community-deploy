@@ -17,15 +17,17 @@
 - Docker installed
 - Docker Compose installed
 
-If you deploy using CentOS, you can use this script:
+If you deploy using Rocky, you can use this script:
 
-centos7-base-software.sh
+rocky8-base-software.sh
+
+(This script can be executed on Centos7-8)
 
 Or if you are Ubuntu user you can use this script:
 
-ubuntu18-base-software.sh
+ubuntu20-base-software.sh
 
-- Give it permissions: chmod ugo+x centos7-base-software.sh
+- Give it permissions: chmod ugo+x rocky8-base-software.sh
 
 - Execute it with sudo
 
