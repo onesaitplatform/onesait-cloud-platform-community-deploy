@@ -1,0 +1,17 @@
+version: "2.1"
+
+services:
+  routerservice:
+    container_name: auditrouter
+    networks:
+      - op_data_datanetwork
+    image: ${REPOSITORY}/onesaitplatform/audit-router:${MODULE_TAG}
+    environment:
+      - SERVER_NAME=${SERVER_NAME}
+      - REALTIMEDBUSEAUTH=false
+      - NOTIFICATION_POOL_SUBSCRIPTION=50
+      - NOTIFICATION_POOL_SUBSCRIPTION_NOTIFICATOR=50
+      - NOTIFICATION_SUBSCRIPTION_ATTEMPS=5
+networks:
+  op_data_datanetwork:
+    external: true
