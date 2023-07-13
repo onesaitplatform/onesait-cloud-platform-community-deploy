@@ -1,7 +1,7 @@
 version: "2.1"
 
 services:
-  routerservice:
+  auditrouter:
     container_name: auditrouter
     networks:
       - op_data_datanetwork
