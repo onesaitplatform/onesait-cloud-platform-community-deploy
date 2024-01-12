@@ -24,7 +24,7 @@ encrypt_key  = no # Change to encrypt the private key using des3 or similar
 default_md   = sha256
 prompt       = no
 utf8         = yes
-# Speify the DN here so we aren't prompted (along with prompt = no above).
+# Specify the DN here so we aren't prompted (along with prompt = no above).
 distinguished_name = req_distinguished_name
 # Extensions for SAN IP and SAN DNS
 req_extensions = v3_req
@@ -40,14 +40,14 @@ CN = $COMMONNAME
 [v3_req]
 basicConstraints     = CA:FALSE
 subjectKeyIdentifier = hash
-keyUsage             = keyCertSign, cRLSign
+keyUsage             = critical, nonRepudiation, digitalSignature, keyEncipherment, keyAgreement
 extendedKeyUsage     = clientAuth, serverAuth
 subjectAltName       = @alt_names
 # Alternative names are specified as IP.# and DNS.# for IP addresses and
 # DNS accordingly. 
 [alt_names]
 IP.1  = $IP 
-DNS.1 = $DNS
+DNS.1 = $COMMONNAME
 EOF
 
 # Create the certificate authority (CA). This will be a self-signed CA, and this
