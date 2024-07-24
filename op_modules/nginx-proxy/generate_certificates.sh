@@ -40,7 +40,7 @@ CN = $COMMONNAME
 [v3_req]
 basicConstraints     = CA:FALSE
 subjectKeyIdentifier = hash
-keyUsage             = critical, nonRepudiation, digitalSignature, keyEncipherment, keyAgreement
+keyUsage             = critical, nonRepudiation, digitalSignature, keyEncipherment, keyAgreement #keyCertSign, cRLSign
 extendedKeyUsage     = clientAuth, serverAuth
 subjectAltName       = @alt_names
 # Alternative names are specified as IP.# and DNS.# for IP addresses and

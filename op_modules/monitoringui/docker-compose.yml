@@ -7,6 +7,9 @@ services:
     environment:
      - SERVER_NAME=${SERVER_NAME}
      - REALTIMEDBUSEAUTH=false
+     - USE_KEYCLOAK=true
+     - OAUTH_SSO_ENABLED=true
+     - ADMIN_API_KEY=${ADMIN_API_KEY}
     stdin_open: true
     external_links:
      - realtimedb

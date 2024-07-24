@@ -1,0 +1,19 @@
+version: "2.1"
+
+services:
+  keycloak:
+    container_name: keycloak
+    image: ${REPOSITORY}/onesaitplatform/keycloak:${MODULE_TAG}
+    environment:
+     - SERVER_NAME=${SERVER_NAME}
+     - API_KEY=${API_KEY}
+     - KEYCLOAK_FRONTEND_URL=https://${SERVER_NAME}/auth
+    stdin_open: true
+    external_links:
+     - configdb
+     - controlpanelservice
+    networks:
+    - op_data_datanetwork
+networks:
+  op_data_datanetwork:
+    external: true

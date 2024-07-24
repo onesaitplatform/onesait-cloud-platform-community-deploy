@@ -7,6 +7,9 @@ services:
     environment:
       - REALTIMEDBUSEAUTH=false
       - SERVER_NAME=${SERVER_NAME}
+      - USE_KEYCLOAK=true
+      - OAUTH_SSO_ENABLED=true
+      - ADMIN_API_KEY=${ADMIN_API_KEY}
       - ONESAIT_PROPERTIES={"onesaitplatform":{"database":{"mongodb":{"socket-timeout":10000}}}}          
     networks:
       - op_data_datanetwork
