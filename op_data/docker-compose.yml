@@ -14,7 +14,9 @@ services:
     networks:
       - datanetwork
     ports:
-      - "3306:3306"           
+      - "3306:3306"  
+    volumes:
+      - ../resources/mysql/config-file.cnf:/etc/mysql/conf.d/config-file.cnf:ro      
 networks:
   datanetwork:
     ipam:
