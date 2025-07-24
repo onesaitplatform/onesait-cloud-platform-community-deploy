@@ -8,6 +8,7 @@ services:
       - REALTIMEDBUSEAUTH=true
       - SERVER_NAME=${SERVER_NAME}
       - USE_KEYCLOAK=true
+      - NOTEBOOKPLATFORMAUTH=true
       - OAUTH_SSO_ENABLED=true
       - ADMIN_API_KEY=${ADMIN_API_KEY}
       # If you deploy in a server over https ssl comment the following line (always uncomment by default). Change proxyurl port if using a different one (see nging.conf - server - listen)
