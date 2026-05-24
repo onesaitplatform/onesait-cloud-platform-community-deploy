@@ -59,7 +59,7 @@ http {
 			
 			listen 443 ssl;
     		# Replace ${SERVER_NAME} with name obtained from console command output: "hostname"
-			server_name 172.29.48.13; 
+			server_name ${SERVER_NAME}; 
 			
 			# SSL configuration (for https)
 			add_header Strict-Transport-Security "max-age=31536000";
@@ -78,12 +78,12 @@ http {
 			# Uncomment if Router (Sematic inf. Broker) module is deployed
 			# Required modules up and uncommented (op_modules): [ControlPanel]
 			# Required databases up (op_data): [ConfigDB, SchedulerDB, RealTimeDB, Quasar]
-			include /usr/local/conf.d/router.conf;
+			#include /usr/local/conf.d/router.conf;
 
 			# Uncomment if DigitalBroker (IoTBroker) module is deployed
 			# Required modules up and uncommented (op_modules): [Router, ControlPanel]
 			# Required databases up (op_data): [ConfigDB, SchedulerDB, RealTimeDB, Quasar]
-			include /usr/local/conf.d/digitalbroker.conf;
+			#include /usr/local/conf.d/digitalbroker.conf;
 
 			# Uncomment if you want to use web projects. 
 			# Required modules up and uncommented (op_modules): [ControlPanel]
@@ -93,22 +93,22 @@ http {
 			# Uncomment if you want to use APIs projects. 
 			# Required modules up and uncommented (op_modules): [Router, DigitalBroker, ControlPanel]
 			# Required databases up (op_data): [ConfigDB, SchedulerDB, RealTimeDB, Quasar]
-			include /usr/local/conf.d/apimanager.conf;
+			#include /usr/local/conf.d/apimanager.conf;
 			
 			# Uncomment if DashboardEngine module is deployed
 			# Required modules up and uncommented (op_modules): [Router, DigitalBroker, ControlPanel]
 			# Required databases up (op_data): [ConfigDB, SchedulerDB, RealTimeDB, Quasar]
-			include /usr/local/conf.d/dashboardengine.conf;
+			#include /usr/local/conf.d/dashboardengine.conf;
 
 			# Uncomment if Notebooks module is deployed
 			# Required modules up and uncommented (op_modules): [Router, DigitalBroker, ControlPanel]
 			# Required databases up (op_data): [ConfigDB, SchedulerDB, RealTimeDB, Quasar]
-			include /usr/local/conf.d/notebook.conf;
+			#include /usr/local/conf.d/notebook.conf;
 
 			# Uncomment if FlowEngine (Nodered) module is deployed
 			# Required modules up and uncommented (op_modules): [Router, DigitalBroker, ControlPanel]
 			# Required databases up (op_data): [ConfigDB, SchedulerDB, RealTimeDB, Quasar]
-			include /usr/local/conf.d/flowengine.conf;
+			#include /usr/local/conf.d/flowengine.conf;
 
 			# Uncomment if DeviceSimulator module is deployed
 			# Required modules up and uncommented (op_modules): [Router, DigitalBroker, ControlPanel]
@@ -133,7 +133,7 @@ http {
 			# Uncomment if Keycloak Service module is deployed
             # Required modules up and uncommented (op_modules): [Router, DigitalBroker, ControlPanel]
             # Required databases up (op_data): [ConfigDB, SchedulerDB, RealTimeDB, Quasar]
-            include /usr/local/conf.d/keycloak.conf;
+            #include /usr/local/conf.d/keycloak.conf;
 
 			
 	}

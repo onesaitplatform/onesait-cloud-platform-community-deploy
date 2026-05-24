@@ -4,8 +4,12 @@ services:
   streamsets:
     container_name: streamsets
     image: ${REPOSITORY}/onesaitplatform/streamsets:${MODULE_TAG}
+    ulimits:
+      nofile:
+        soft: 32768
+        hard: 65536
     environment:
-      - SERVERNAME=${SERVER_NAME}
+      - SERVERNAME=localhost
       - PROTOCOL=${PROTOCOL}
       - REALTIMEDBUSEAUTH=false
       - OP_STREAMSETS_XMX=1024m

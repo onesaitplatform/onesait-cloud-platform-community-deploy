@@ -1,0 +1,6 @@
+# Evitar subir datos de base de datos crudos
+op_data/data/
+# Certificados TLS generados localmente
+op_modules/nginx-proxy/tls/
+# Archivos temporales o logs
+*.log
