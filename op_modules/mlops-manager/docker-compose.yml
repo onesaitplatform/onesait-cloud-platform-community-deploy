@@ -1,0 +1,33 @@
+version: "2.1"
+
+services:
+  mlops-manager:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: onesaitplatform/mlops-manager:local
+    container_name: mlops-manager
+    environment:
+      - STORE_URI=${STORE_URI}
+      - ARTIFACT_STORE=${ARTIFACT_STORE}
+      - MLFLOW_SERVER_HOST=${MLFLOW_SERVER_HOST}
+      - MLFLOW_SERVER_PORT=${MLFLOW_SERVER_PORT}
+      - HOST_KEYCLOAK=${HOST_KEYCLOAK}
+      - MLFLOW_FLASK_SERVER_SECRET_KEY=${MLFLOW_FLASK_SERVER_SECRET_KEY:-onesait-mlflow-local-secret}
+    volumes:
+      - mlflow_artifacts:/mlruns
+    networks:
+      op_data_datanetwork:
+        aliases:
+          - modelsmanager
+    external_links:
+      - configdb
+      - keycloak
+
+volumes:
+  mlflow_artifacts:
+
+networks:
+  op_data_datanetwork:
+    external: true
+

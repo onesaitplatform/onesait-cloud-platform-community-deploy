@@ -6,6 +6,18 @@ services:
       - op_data_datanetwork
     container_name: zeppelin
     image: ${REPOSITORY}/onesaitplatform/notebook:${MODULE_TAG}
+    user: root
+    environment:
+      - SERVER_NAME=${SERVER_NAME}
+      - PROTOCOL=${PROTOCOL}
+      - REALTIMEDBUSEAUTH=false
+    volumes:
+      - ./conf/shiro.ini:/zeppelin/conf/shiro.ini:ro
+      - ./notebook-storage:/zeppelin/notebook
+    external_links:
+      - configdb
+      - realtimedb
+      - controlpanelservice
 networks:
   op_data_datanetwork:
     external: true

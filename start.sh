@@ -103,6 +103,7 @@ uncomment_include "keycloak.conf"
 if [[ " ${MODULES[@]} " =~ " dashboard-engine " ]]; then uncomment_include "dashboardengine.conf"; fi
 if [[ " ${MODULES[@]} " =~ " notebooks " ]]; then uncomment_include "notebook.conf"; fi
 if [[ " ${MODULES[@]} " =~ " flowengine " ]]; then uncomment_include "flowengine.conf"; fi
+if [[ " ${MODULES[@]} " =~ " mlops-manager " ]]; then uncomment_include "mlflow.conf"; fi
 if [[ " ${MODULES[@]} " =~ " api-manager " ]]; then
     uncomment_include "apimanager.conf"
     uncomment_include "digitalbroker.conf"
@@ -111,7 +112,28 @@ fi
 
 sed -i "s/server_name \${SERVER_NAME};/server_name $SERVER_NAME;/g" "$NGINX_DIR/conf.d/nginx.conf"
 
+# Forzar sincronización del nginx.conf en el contenedor (WSL2 bind mount lag)
+if docker ps -q --filter name=proxy | grep -q .; then
+    docker exec proxy sh -c "
+        awk '{gsub(\"#include /usr/local/conf.d/notebook.conf;\",\"include /usr/local/conf.d/notebook.conf;\")}1' /etc/nginx/nginx.conf > /tmp/nginx_sync.conf && cat /tmp/nginx_sync.conf > /etc/nginx/nginx.conf
+        awk '{gsub(\"#include /usr/local/conf.d/mlflow.conf;\",\"include /usr/local/conf.d/mlflow.conf;\")}1' /etc/nginx/nginx.conf > /tmp/nginx_sync.conf && cat /tmp/nginx_sync.conf > /etc/nginx/nginx.conf
+        nginx -t && nginx -s reload
+    " 2>/dev/null && echo -e \"${GREEN}Nginx sincronizado y recargado.${NC}\"
+    # Copy any new conf files that WSL2 bind mount hasn't propagated yet
+    for conf in notebook mlflow; do
+        if [ -f \"$NGINX_DIR/conf.d/\${conf}.conf\" ]; then
+            docker cp \"$NGINX_DIR/conf.d/\${conf}.conf\" proxy:/usr/local/conf.d/\${conf}.conf 2>/dev/null || true
+        fi
+    done
+fi
+
 # 7. Iniciar módulos
+if [[ " ${MODULES[*]} " =~ " mlops-manager " ]]; then
+    echo -e "\n${YELLOW}Inicializando base de datos MLflow...${NC}"
+    chmod +x "$BASE_DIR/scripts/init-mlflow-db.sh"
+    "$BASE_DIR/scripts/init-mlflow-db.sh"
+fi
+
 echo -e "\n${GREEN}Iniciando módulos para el perfil $PROFILE...${NC}"
 for module in "${MODULES[@]}"; do
     echo -e "${YELLOW}Iniciando módulo: $module...${NC}"

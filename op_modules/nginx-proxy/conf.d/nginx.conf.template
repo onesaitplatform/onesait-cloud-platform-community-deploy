@@ -135,6 +135,9 @@ http {
             # Required databases up (op_data): [ConfigDB, SchedulerDB, RealTimeDB, Quasar]
             #include /usr/local/conf.d/keycloak.conf;
 
+			# Uncomment if MLOps Manager (MLflow) module is deployed
+			#include /usr/local/conf.d/mlflow.conf;
+
 			
 	}
 

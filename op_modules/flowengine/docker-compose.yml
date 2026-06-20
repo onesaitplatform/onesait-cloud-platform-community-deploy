@@ -5,11 +5,10 @@ services:
     container_name: flowengine
     image: ${REPOSITORY}/onesaitplatform/flowengine:${MODULE_TAG}
     environment:
-      - SERVERNAME=localhost
+      - SERVERNAME=${SERVER_NAME}
       - PROTOCOL=${PROTOCOL}
       - REALTIMEDBUSEAUTH=false
     external_links:
-      - quasar
       - configdb
       - routerservice
       - realtimedb

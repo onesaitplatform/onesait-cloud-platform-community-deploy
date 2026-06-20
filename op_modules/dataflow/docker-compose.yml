@@ -9,7 +9,7 @@ services:
         soft: 32768
         hard: 65536
     environment:
-      - SERVERNAME=localhost
+      - SERVERNAME=${SERVER_NAME}
       - PROTOCOL=${PROTOCOL}
       - REALTIMEDBUSEAUTH=false
       - OP_STREAMSETS_XMX=1024m
@@ -18,7 +18,6 @@ services:
       - OP_STREAMSETS_SAMPLING_SAMPLE_SIZE=1
       - OP_STREAMSETS_SAMPLING_POPULATION_SIZE=50
     external_links:
-      - quasar
       - configdb
       - routerservice
       - realtimedb

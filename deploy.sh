@@ -23,7 +23,6 @@ SERVER_NAME=${SERVER_NAME:-$WSL_IP}
 echo -e "${GREEN}Configurando SERVER_NAME=$SERVER_NAME...${NC}"
 
 find "$BASE_DIR" -name ".env" -type f -exec sed -i "s/^SERVER_NAME=.*/SERVER_NAME=$SERVER_NAME/g" {} +
-find "$BASE_DIR" -name "docker-compose.yml" -type f -exec sed -i "s/SERVERNAME=\${SERVER_NAME}/SERVERNAME=$SERVER_NAME/g" {} +
 
 # 2. Selección de Perfil
 echo -e "\n${BOLD}Selecciona el perfil de tu grupo de trabajo:${NC}"
@@ -36,19 +35,19 @@ read -p "Opción [1-4]: " PROFILE_OPT
 case $PROFILE_OPT in
     1)
         PROFILE="FULL"
-        MODULES=("keycloak" "control-panel" "keycloak-manager" "router" "iotbroker" "api-manager" "flowengine" "dataflow" "dashboard-engine" "notebooks" "nginx-proxy")
+        MODULES=("keycloak" "mlops-manager" "control-panel" "keycloak-manager" "router" "iotbroker" "api-manager" "flowengine" "dataflow" "dashboard-engine" "notebooks" "nginx-proxy")
         ;;
     2)
         PROFILE="INTEGRATION"
-        MODULES=("keycloak" "control-panel" "keycloak-manager" "router" "iotbroker" "api-manager" "flowengine" "dataflow" "nginx-proxy")
+        MODULES=("keycloak" "mlops-manager" "control-panel" "keycloak-manager" "router" "iotbroker" "api-manager" "flowengine" "dataflow" "nginx-proxy")
         ;;
     3)
         PROFILE="REPORTING"
-        MODULES=("keycloak" "control-panel" "keycloak-manager" "dashboard-engine" "nginx-proxy")
+        MODULES=("keycloak" "mlops-manager" "control-panel" "keycloak-manager" "dashboard-engine" "nginx-proxy")
         ;;
     4)
         PROFILE="ANALYTICS"
-        MODULES=("keycloak" "control-panel" "keycloak-manager" "notebooks" "nginx-proxy")
+        MODULES=("keycloak" "mlops-manager" "control-panel" "keycloak-manager" "notebooks" "nginx-proxy")
         ;;
     *)
         echo -e "${RED}Opción inválida. Saliendo...${NC}"
@@ -60,7 +59,7 @@ echo -e "\n${GREEN}Perfil seleccionado: $PROFILE${NC}"
 
 # Guardar perfil activo para start.sh
 echo "PROFILE=$PROFILE" > "$BASE_DIR/.profile"
-echo "MODULES=${MODULES[*]}" >> "$BASE_DIR/.profile"
+echo "MODULES=\"${MODULES[*]}\"" >> "$BASE_DIR/.profile"
 
 # 3. Generación de Certificados SSL autofirmados (siempre en deploy para reflejar SERVER_NAME actual)
 echo -e "\n${YELLOW}Generando certificados SSL autofirmados para $SERVER_NAME...${NC}"
@@ -174,6 +173,12 @@ fi
 sed -i "s/server_name \${SERVER_NAME};/server_name $SERVER_NAME;/g" "$NGINX_DIR/conf.d/nginx.conf"
 
 # 9. Levantar módulos de la aplicación
+if [[ " ${MODULES[*]} " =~ " mlops-manager " ]]; then
+    echo -e "\n${YELLOW}Inicializando base de datos MLflow...${NC}"
+    chmod +x "$BASE_DIR/scripts/init-mlflow-db.sh"
+    "$BASE_DIR/scripts/init-mlflow-db.sh"
+fi
+
 echo -e "\n${GREEN}Iniciando módulos para el perfil $PROFILE...${NC}"
 for module in "${MODULES[@]}"; do
     echo -e "${YELLOW}Iniciando módulo: $module...${NC}"
